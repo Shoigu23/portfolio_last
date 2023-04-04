@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div style="margin: 30px; font-size: 20px;">
+    <div>
+        <div>
+            <div><img width="150px" src="/static/img/huawei-mate.jpg"></div>
+        </div>
+        <div>
+            <form action="{% url 'profile' user.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <div><img width="150px" src="{{files}}">{{img.image.url}}</div>
+                </div> 
+                <div>
+                    <div>
+                        <h4 class="text-right" style="display: flex; justify-content: center; font-size: 50px;">Profile Settings</h4>
+                    </div>
+                    <h3>Name: {{form.first_name}}</h3>
+                    <h3>Last name: {{form.last_name}}</h3>
+                    <h3>Username: {{form.username}}</h3>
+                    <h3>Email: {{form.email}}</h3>
+                    <h3>Photo: {{form.image}}</h3>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" style="font-size: 50px; margin: 10px; color: rgb(95, 255, 80);">Save Profile</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="bgimage" id="home">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hero-text">
+          {% if user.is_authenticated %}
+            <h2 class="hero_title">Hi, it's me {{user.first_name}}</h2>
+            <p class="hero_desc">I am a professional freelancer in New York City</p>
+          {% else %}
+          <h2 class="hero_title">You don't have a account </h2>
+          <p class="hero_desc">Please, register now</p>
+          {% endif %}
+        </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="about-section">
+    <h1>About Me</h1>
+    <p>Some text about who we are and what we do.</p>
+    <p>Resize the browser window to see that this page is responsive by the way.</p>
+    
+    <div class="about__content-skills">
+        <h2 class="about__content-title">My Skills</h2>
+        <div class="skills">
+          {% for i in skill %}
+          <div class="skills__skill">{{i.title}}</div>
+          {% endfor %}
+        </div>
+      </div>
+</div>
+  
+<h2 style="text-align:center; padding-top: 10px; color: black;">My projects</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      {% for i in forma %}
+      <img src="{{i.image.url}}" style="width:100%">
+      <div class="container">
+        <h2  style="color: black;">{{i.title}}</h2>
+        <p class="title">CEO & Founder</p>
+        <p style="color: black;">{{i.discription}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<h2 style="display: flex; justify-content: center; color: black;">Comments</h2>
+
+{% for i in comment %}
+
+<ul style="margin: 20px; padding-left: 30px;">
+  <li>
+    <h2 style="color: black;">Name: {{i.name}}</h2>
+    <p style="color: black;">Email: {{i.email}}</p>
+    <p style="color: black;">Comment: {{i.comments}}</p>
+  </li>
+</ul>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    {% block links %}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo"><a href="{% url 'main' %}"> Shaibek TM </a></div>
+    <ul class="nav-links">
+      <div class="menu">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'main' %}">Main</a></li>
+        <li><a href="{% url 'profile' user.id %}">{{user.username}}</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li><a href="{% url 'message' %}">Contact us</a></li>
+        <li><a href="{% url 'create_project' %}">Add Project</a></li>
+        {% else %}
+        <li><a href="{% url 'login'%}">Sing In</a></li>
+        <li><a href="{% url 'registration'%}">Sing Up</a></li>
+        {% endif %}
+      </div>  
+    </ul>
+  </div>
+</nav>
+
+
+{% block content %}
+{% endblock %}
+<footer>
+  <div class="footer">
+      <p>This is footer section.</p>
+      <ul class="socials">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-github"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+      <div class="footer-copyright">
+          <p>Shaibek_TM&copy; 2023 </p>
+      </div>
+  </div>
+</footer>
+    
+    
+</body>
+</html>

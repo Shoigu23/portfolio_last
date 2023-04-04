@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="{% url 'sendemail' %}" method="post">
+      {% csrf_token %}
+      {% if request.method == 'POST' %}
+      <h3>{{message}}</h3>
+      {% endif %}
+      <label for="fname" style="color: black;">First Name</label>
+      <input type="text" id="fname" name="name" placeholder="Your name..">
+  
+      <label for="lname" style="color: black;">Email</label>
+      <input type="text" id="lname" name="email" placeholder="Your last name..">
+  
+      <label for="subject" style="color: black;">Message</label>
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      
+      <input type="submit" value="Submit">
+      
+
+    </form>
+  </div>
+
+{% endblock %}

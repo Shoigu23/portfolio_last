@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2 style="text-align:center; padding-top: 10px; color: black;">My projects</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      {% for i in projects %}
+      <div class="container">
+        <h2  style="color: black;">{{i.title}}</h2>
+        <p class="title">{{i.pre_description}}</p>
+        <p style="color: black;">{{i.discription}}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+      <h1>Create Project</h1>
+      <form method="post" enctype="multipart/form-data" action="{% url 'create_project' %}">
+        {% csrf_token %}
+        <label for="">{{ forma.as_p }}</label>
+        <button type="submit">Submit</button>
+      </form>
+  </div>
+</div>
+
+{% endblock %}

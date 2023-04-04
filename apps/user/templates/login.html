@@ -1,0 +1,34 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/sing_in.css'%}"> 
+<div class="logo">
+ 
+</div>
+<div class="box bg-img">
+  <div class="content">
+    {% for i in messages %}
+    <h1>{{i}}</h1>
+  
+    {% endfor %}
+  
+    <h2>Sign<span> In</span></h2>
+
+      <h4>{{ form.non_field_errors }}</h4>
+
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      <label for="{{form.username.for_id_label}}"></label>
+        {{form.username}}
+        <label for="{{form.password.for_id_label}}"></label>
+        {{form.password}}
+        <button class="login-btn" type="submit">Sign In</button>
+    </form>
+    <p class="new-account">Not a member? <a href="{% url 'registration' %}">Sign Up now!</a></p><br>
+    <p class="f-pass">
+      <a href="#">forget password?</a>
+      <a class="mt-5" style="color: #ffce00;" href="{% url 'main' %}"> Home </a>
+    </p>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/c0078485ae.js" crossorigin="anonymous"></script>
